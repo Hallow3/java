@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" th:href="@{/bootstrap-5.0.2-dist/css/bootstrap.min.css}">
+    <script type="text/javascript" th:src="@{/jquery/dist/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/lightslider.js}"></script>
+    <script type="text/javascript" th:src="@{/bootstrap-5.0.2-dist/js/bootstrap.min.js}"></script>
+    <title>Home page</title>
+</head>
+<body>
+  
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" >
+        <a class="navbar-brand" th:href="@{/home}">AFRICA YAMOO</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" th:href="@{/home}">&nbsp;Acceuil<span class="sr-only">(categories)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/recettes}">&nbsp;Recettes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/about}">&nbsp;à propos</a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0" th:action="@{/search}" th:object="${recet}" method="POST" style="display: flex; margin:5px;">
+            <input minlength="2" maxlength="50" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" th:field="*{nameRecette}" required>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="margin:5px ;">Rechercher</button>
+          </form>
+        </div>
+      </nav>
+      <br/>
+      <br/>
+
+      <div class="card">
+        <div class="card-body">
+          Cette application vous permettra de suivre des tutoriels de recettes de cuisines diverses
+        </div>
+        <div class="card-body">
+          <b>CATEGORIES</b>
+        </div>
+      </div>
+
+      <div class="container">
+      <div class="card-deck" style="display:flex; flex-wrap: wrap;margin-left:1%; max-height: 320px;">
+        <div  class="card shadow p-3 mb-5 bg-white rounded" th:each = "cat: ${categorie}" style=" width:150px; margin-top: 15px; margin: 5px; padding: 1px;">
+          <a class="btn btn-outline-success" th:href="@{/recettes/categorie(id=${cat.id})}"><img style="height: 150px;" class="card-img-top" th:src="@{${cat.urlImage}}" alt="recette">
+          <div class="card-body">
+            <h5 style="font-size: 13px; font-size-adjust: initial;" class="card-title" th:text="${cat.name}"></h5>
+          </div>
+          </a>
+        </div>
+      </div>
+      </div>
+      <footer class="fixed-bottom py-3">
+        <div>
+          <p>by soft/hallow &COPY; 2023</p>
+        </div>
+      </footer>
+</body>
+</html>

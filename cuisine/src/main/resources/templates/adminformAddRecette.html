@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" th:href="@{/bootstrap-5.0.2-dist/css/bootstrap.min.css}">
+    <script type="text/javascript" th:src="@{/jquery/dist/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/lightslider.js}"></script>
+    <script type="text/javascript" th:src="@{/bootstrap-5.0.2-dist/js/bootstrap.min.js}"></script>
+    <script th:src="@{/sweetalert2/node_modules/sweetalert2/dist/sweetalert2.all.min.js}"></script>
+    <title>ajouter une recette</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">gestion des recettes</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/admincategories}">&nbsp;liste des categories</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/adminrecettes}">&nbsp;liste des recettes</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div th:if="${sucess}">
+  <script type="text/javascript">
+  test();
+  </script>
+</div>
+<div class="container bg-dark text-white" style="margin-top: 5%; max-width: 500px; background-color: #404041;">
+    <fieldset>
+    <h2 align = "center">ajoutter une recette</h2>
+    <hr/><hr/>
+   <form th:action="@{/adminaddRecettes}" th:object = "${recette}" method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="name">entrer le nom: </label>
+        <input minlength="2" maxlength="50" type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="entrez le nom" th:field = "*{nameRecette}" required>
+    </div><br/>
+    <div class="form-group">
+        <label for="last_name">entrer le text pour les ingredients: </label>
+        <textarea rows="5" minlength="80" maxlength="2000" name="ingredients" class="form-control" id="description" aria-describedby="emailHelp" placeholder="entrez votre texte d'ingredients" th:field = "*{enteteDescriptionRecette}" aria-required="true" required></textarea>
+    </div><br/>
+    <div class="form-group">
+        <label for="last_name">entrer le texte pour la preparation : </label>
+        <textarea rows="8" minlength="100" maxlength="60000" name="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="entrez votre texte descriptif" th:field = "*{descriptionRecette}" aria-required="true" required></textarea>
+    </div><br/>
+    <div class="form-group">
+        <label for="email">choisissezl'image a charger:</label>
+        <input type="file" name="file" id="" required />
+      
+      </div><br/>
+      <div class="form-group">
+      <label for="email">categorie:</label>
+      <div class="col-sm-S">
+      <select th:field="*{categorie}">
+      <th:block th:each = "cat: ${listCategorie}">
+      <option th:text = "${cat.name}" th:value = "${cat.id}">
+      </th:block>
+      </select>
+      </div>
+      </div><br/>
+      <button onsubmit="" type="submit" class="btn btn-primary">Envoyer</button>
+   </form>
+    </fieldset>
+</div>
+      
+</body>
+</html>

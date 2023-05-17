@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" th:href="@{/bootstrap-5.0.2-dist/css/bootstrap.min.css}">
+    <script type="text/javascript" th:src="@{/jquery/dist/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/lightslider.js}"></script>
+    <script type="text/javascript" th:src="@{/bootstrap-5.0.2-dist/js/bootstrap.min.js}"></script>
+    <script th:src="@{/sweetalert2/node_modules/sweetalert2/dist/sweetalert2.all.min.js}"></script>
+    <title>Description de recette</title>
+</head>
+<body th:each="recette: ${recette}" onload="resize()">
+  
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" th:href="@{/home}">AFRICA YAMOO</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" th:href="@{/home}">&nbsp;Acceuil<span class="sr-only">(categories)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/recettes}">&nbsp;Recettes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/about}">&nbsp;à propos</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0" th:action="@{/search}" th:object="${recet}" method="POST" style="display: flex; margin:5px;">
+        <input minlength="2" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" th:field="*{nameRecette}" required>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="margin:5px ;">Rechercher</button>
+      </form>
+    </div>
+  </nav>
+      <div class="card">
+        <div class="card-body">
+          Cette application vous permettra de suivre des tutoriel de recettes de cuisine diverses
+        </div>
+        <div class="card-body">
+          <b>description de la recette</b>
+        </div>
+      </div>
+      <div class="container-fluid ">
+      <div>
+        <img class="img-thumbnail" style="max-height: 200px; width: 25%;" th:src="@{/} + ${recette.urlImageRecette}" alt="recette">
+      </div>
+      <div class="container">
+      <p th:text="${recette.nameRecette}"></p>
+      <br/>
+      <h4>INGREDIENTS:</h4>
+      <br/>
+      <div class="container-fluid" style="display: flex; flex-wrap: wrap;">
+              <textarea disabled cols="200" id="textarea1" style="width:max-content; background-color: white; border: none;">
+                <th:block th:text="${recette.enteteDescriptionRecette}">
+              </textarea> 
+        </div>
+      <br/>
+       <h4>METHODE DE PREPARATION:</h4>
+      <br/>
+      <div class="container-fluid" style="display: flex; flex-wrap: wrap;">
+        <textarea disabled cols="200" id="textarea2" style="width:max-content; background-color: white; border: none;">
+          <th:block th:text="${recette.descriptionRecette}">
+        </textarea> 
+      </div>
+       Date de Publication :&nbsp;<span th:text="${recette.datePublication}"></span> <br/>
+       Auteur :&nbsp;<span th:text="${auteur}"></span><br/>
+       Addresse:&nbsp;<span th:text="${mail}"></span>
+      </div>
+      </div>
+      <script>
+        let resize = () =>{
+
+          var txt1 = document.getElementById('textarea1').innerHTML;
+          var txt2 = document.getElementById('textarea2').innerHTML;
+
+          var row1 = txt1.length;
+          var row2 = txt2.length;
+
+          row1 /= 200;
+          row2 /= 200;
+
+          document.getElementById('textarea1').rows = row1 + 5;
+          document.getElementById('textarea2').rows = row2 + 8;
+
+
+        }
+      </script>
+</body>

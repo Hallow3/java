@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="/bootstrap-5.0.2-dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" th:href="@{/bootstrap-5.0.2-dist/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="/bootstrap-5.0.2-dist/css/bootstrap-grid.min.css"/>
+    <link rel="stylesheet" th:href="@{/bootstrap-5.0.2-dist/css/bootstrap-grid.min.css}">
+    <link rel="stylesheet" href="/bootstrap-5.0.2-dist/css/bootstrap-reboot.min.css"/>
+    <link rel="stylesheet" th:href="@{/bootstrap-5.0.2-dist/css/bootstrap-reboot.min.css}">
+    <script type="text/javascript" src="/bootstrap-5.0.2-dist/js/bootstrap.min.js" ></script>
+    <script type="text/javascript" th:src="@{/bootstrap-5.0.2-dist/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" href="../../static/sweetalert2/node_modules/sweetalert2/dist/sweetalert2.css"/>
+    <link rel="stylesheet" th:href="@{/sweetalert2/node_modules/sweetalert2/dist/sweetalert2.css}">
+    <script type="text/javascript" src="/bootstrap-5.0.2-dist/js/bootstrap.min.js" ></script>
+    <script type="text/javascript" th:src="@{/bootstrap-5.0.2-dist/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script type="text/javascript" th:src="@{https://cdn.jsdelivr.net/npm/sweetalert2@10}"></script>
+    <script type="text/javascript" src="C:\Users\marina la star\Documents\workspace-spring-tool-suite-4-4.15.3.RELEASE\cuisine\src\main\resources\static\sweetalert2\node_modules\sweetalert2\dist"></script>
+    <title>ajouter une recette</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">gestion des recettes</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/admin/categories}">liste des categories</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/admin/recettes}">liste des recettes</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container" style="margin-top: 5%; width: 500px; border: solid;">
+    <fieldset>
+    <h2 align = "center">ajoutter une recette</h2>
+    <hr/><hr/>
+   <form th:action="@{/admin/addRecettes}" th:object = "${recette}" method="POST">
+    <div class="form-group">
+        <label for="name">entrer le nom: </label>
+        <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="entrez le nom" th:field = "*{nameRecette}" required>
+    </div>
+    <div class="form-group">
+        <label for="last_name">entrer les ingredients: </label>
+        <textarea name="ingredients" class="form-control" id="description" aria-describedby="emailHelp" placeholder="entrez votre texte d'ingredients" th:field = "*{enteteDescriptionRecette}" aria-required="true" required></textarea>
+        <small id="emailHelp" class="form-text text-muted">entrer un texte dans lequel vous decrivez les ingredient en 1 seul block</small>
+    </div>
+    <div class="form-group">
+        <label for="last_name">entrer la description: </label>
+        <textarea name="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="entrez votre texte descriptif" th:field = "*{descriptionRecette}" aria-required="true" required></textarea>
+        <small id="emailHelp" class="form-text text-muted">entrer un texte dans lequel vous decrivez la methode de preparation</small>
+    </div>
+    <div class="form-group">
+        <label for="email">nom de l'image a charger:</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="image" th:field = "*{urlImageRecette}" required>
+        <small id="emailHelp" class="form-text text-muted">placer l'image en question dans le dossier décrit</small>
+      </div>
+      <div class="form-group">
+      <label for="email">categorie:</label>
+      <div class="col-sm-S">
+      <select th:field="*{categorie}">
+      <th:block th:each = "cat: ${listCategorie}">
+      <option th:text = "${cat.name}" th:value = "${cat.id}">
+      </th:block>
+      </select>
+      </div>
+      </div>
+      <button onsubmit="test()" type="submit" class="btn btn-primary">Envoyer</button>
+   </form>
+    </fieldset>
+</div>
+<script src="../../static/sweetalert2/node_modules/sweetalert2/dist/sweetalert2.all.min.js" th:src="@{/sweetalert2/node_modules/sweetalert2/dist/sweetalert2.all.min.js}"></script>
+        <script th:inline="javascript">
+          function test(){
+            Swal.fire({
+  position: 'top-end',
+  icon: 'success',
+  title: 'demande d\'ajout! ',
+  showConfirmButton: false,
+  timer: 1500
+})
+          }
+        </script> 
+</body>
+</html>

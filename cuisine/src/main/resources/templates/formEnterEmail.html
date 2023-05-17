@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" th:href="@{/bootstrap-5.0.2-dist/css/bootstrap.min.css}">
+    <script type="text/javascript" th:src="@{/jquery/dist/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/lightslider.js}"></script>
+    <script type="text/javascript" th:src="@{/bootstrap-5.0.2-dist/js/bootstrap.min.js}"></script>
+    <script th:src="@{/sweetalert2/node_modules/sweetalert2/dist/sweetalert2.all.min.js}"></script>
+    <title>Récupération du mot de passe</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#"></a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/login}">&nbsp;connexion</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/registration}">&nbsp;inscription</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-7 col-md-offset-4" style="margin-top: 50px;">
+      <h2 align = "center">Recupération du mot de passe</h2>
+      <form th:action="@{/verify}" method="post" th:object="${User}">
+        <div class="form-group">
+          <label for="username">Entrer votre adresse mail: </label>
+          <input th:field="*{email}" type="email" class="form-control" name="username" id="username" placeholder="addresse e-mail" autofocus="autofocus" required>
+        </div><br/>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-7 col-sm-4">
+              <input type="submit" name="login-submit" id="login-submit" class="form-control btn  btn-primary" value="envoyer" />
+            </div>
+          </div>
+        </div>
+      </form><br/>
+      <div >
+        <span> nouvel utilisateur ?&nbsp; <a th:href="@{/registration}"> inscrivez-vous ici!</a></span>
+      </div><br/>
+      
+    </div>
+  </div>
+</div>
+<div th:if="${notFound}">
+
+  <script th:inline="javascript">
+      function test(){
+        Swal.fire({
+position: 'top-end',
+icon: 'error',
+title:  'cet utilisateur n\'existe pas ou n\'a pas de compte ',
+showConfirmButton: false,
+timer: 5000
+})
+      }
+      test();
+    </script>
+
+</div>
+<div th:if="${Found}">
+
+  <script th:inline="javascript">
+      function test(){
+        Swal.fire({
+position: 'top-end',
+icon: 'sucess',
+title:  'un mail de récupération a été envoyé dans votre boite mail ',
+showConfirmButton: false,
+timer: 5000
+})
+      }
+      test();
+    </script>
+
+</div>
+</body>
+</html>

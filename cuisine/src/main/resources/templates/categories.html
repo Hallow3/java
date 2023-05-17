@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" th:href="@{/bootstrap-5.0.2-dist/css/bootstrap.min.css}">
+    <script type="text/javascript" th:src="@{/jquery/dist/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/lightslider.js}"></script>
+    <script type="text/javascript" th:src="@{/bootstrap-5.0.2-dist/js/bootstrap.min.js}"></script>
+    <script th:src="@{/sweetalert2/node_modules/sweetalert2/dist/sweetalert2.all.min.js}"></script>
+    <title>Admin Gestion des Categories</title>
+</head>
+<body>
+  
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand">AFRICA YAMOO</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" th:href="@{/recette}">&nbsp;recettes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/categories}">&nbsp;categories</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/about}">&nbsp;à propos</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="card">
+        <div class="card-body">
+          utilisez cette page pour gerer les categories 
+        </div>
+        <div class="card-body">
+          <b>TOUTES LES CATEGORIES</b>
+        </div>
+      </div>
+      <div class="container" style="align-items:center;">
+        <div class="card-deck" style="display:flex; flex-wrap: wrap;margin-left:1%; max-height: 320px;">
+          <div class="card" th:each = "cate: ${listCategorie}" style=" max-width:150px; margin-top: 15px; margin: 5px;">
+            <img style="max-height: 150px;" class="card-img-top" th:src="@{${cate.urlImage}}" alt="recette">
+            <div class="card-body">
+              <h5 class="card-title" th:text="${cate.name}"></h5>
+              <fieldset style="border: solid;"></fieldset><p class="card-text" th:text="${cate.description}"></p></fieldset>
+            </div>
+              <a class="btn btn-primary" th:href="@{/categorie/update(id=${cate.id})}" style="background-color:green ;">Modifier</a><a id="delete" class="btn btn-primary" th:href="@{/admin/categorie/delete/{id}(id=${cate.id})}" style="background-color: red;">Supprimer</a>
+          </div>
+        </div>
+        </div>
+</body>
+</html>

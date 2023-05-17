@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" th:href="@{/bootstrap-5.0.2-dist/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/bootstrap-5.0.2-dist/css/bootstrap.min.css}">
+    <script type="text/javascript" th:src="@{/jquery/dist/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/lightslider.js}"></script>
+    <script type="text/javascript" th:src="@{/bootstrap-5.0.2-dist/js/bootstrap.min.js}"></script>
+    <title>About</title>
+</head>
+<body>
+  
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" th:href="@{/home}">AFRICA YAMOO</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" th:href="@{/home}">&nbsp;Acceuil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/recettes}">&nbsp;Recettes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/about}">&nbsp;à propos</a>
+              </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="card">
+        <div class="card-body">
+          Cette application vous permettra de suivre des tutoriel de recettes de cuisine diverses
+        </div>
+        <div class="card-body">
+          <h2><b>A propos de nous</b></h2>
+        </div>
+      </div>
+      <br>
+      <div class="card">
+        <div class="card-body">
+          nous sommes representés dans plusieurs pays grace à la qualité de nos cuisiniers <br>
+          ainsi que la qualité des services que nous rendons aux internautes 
+        </br>
+          Nous pensons que la cuisine est un art et que chacun devrait en profité pour un problème de choix et de sensation de son propre talent</br>
+          Nous somme convaincu que le meilleur moyen d'apprendre à cuisiner est de regarder les autres le faire d'ou cette idée</br>
+          </br>
+          <h2>ce que nous proposons</h2></br>
+          Les idées recettes et menus concoctés par des rédactions, avec un parti-pris éditorial unique :<br/>
+
+- Accompagner la transition alimentaire, en privilégiant la cuisine de saison ;<br/>
+
+- Assurer la transmission de la culture culinaire, en valorisant la notion de partage ;<br/>
+
+- Et décomplexer et revendiquer le plaisir du goût, sans tabous ni préjugés.</br>
+Que vous cherchiez la dernière actualité cuisine, à faire un foie gras maison à Noël, le véritable Paris-Brest, la tarte aux pommes de grand-mère, un tajine comme au Maroc ou un curry comme en Inde, africa yamoo est là pour vous guider !<br/>
+
+Consultez nos articles et nos recettes, regardez vos vidéos, créez votre compte Le Club africa yamoo, échangez avec nous sur les réseaux sociaux, mais surtout … passez du bon temps avec nous et en cuisine !<br/>
+
+
+
+Bien plus qu’un catalogue de recettes, <br/>
+
+Nous souhaitons pour vous être un guide du bien manger,<br/>
+
+Plus local, plus durable et toujours de saison.<br/>
+
+Ni militant ni culpabilisant,<br/>
+
+Simplement gourmand et responsable !</br>
+          </br>
+        </div>
+      </div>
+      <br>
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">contacter un cuisinier</h5>
+          <p class="card-text">si vous avez besoin d'un suivie personnel assister de l'un de nos cuisiniers veillez suivre le lien en dessous</p>
+          <a href="#" class="btn btn-primary">Cuisinier</a>
+        </div>
+      </div>
+      <footer>
+      <div class="card bg-dark text-white" style="min-height: 600px;">
+        <div class="card-img-overlay">
+          <h5 class="card-title">Africa Yamoo</h5>
+          <p class="card-text">nous sommes et nous resterons a votre service depuis plus de deux mois pour l'organisation et la gestion de vos repas</p>
+          <p class="card-text">au coeur de votre soulagement !</p>
+          <p class="card-text">conscient du fait qu'il existe des risque au metier nous vous invitons a lire et à accepter les <a th:href="@{${'soft.pdf'}}">termes et conditions d'utilisations</a></p>
+          <p class="card-text"><b>qui somme nous:</b></p>
+          <p class="card-text">soft est une structure de developpeur concentrer dans la mise en place des services de pretations</p>
+          <p class="card-text"><b>nous contacter ? :</b></p>
+          <p><a href="https://www.facebook.com/brayantkamdem/"> <img style="max-width: 100px;" th:src="@{/icones/facebook.png}" alt="img"></a>&nbsp;&nbsp;<a href="mailto:brayantmohamed@gmail.com?subject=i come from africa yamoo"><img style="max-width: 100px;" th:src="@{/icones/mail.png}" alt="img"></a>&nbsp;&nbsp;<a href="https://wa.me/+237698765588"><img style="max-width: 40px;" th:src="@{/icones/zapp.png}" alt="img"></a></p><br/>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>

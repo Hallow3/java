@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="/bootstrap-5.0.2-dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" th:href="@{/bootstrap-5.0.2-dist/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="/bootstrap-5.0.2-dist/css/bootstrap-grid.min.css"/>
+    <link rel="stylesheet" th:href="@{/bootstrap-5.0.2-dist/css/bootstrap-grid.min.css}">
+    <link rel="stylesheet" href="/bootstrap-5.0.2-dist/css/bootstrap-reboot.min.css"/>
+    <link rel="stylesheet" href="../../static/sweetalert2/node_modules/sweetalert2/dist/sweetalert2.css"/>
+    <link rel="stylesheet" th:href="@{/sweetalert2/node_modules/sweetalert2/dist/sweetalert2.css}">
+    <script type="text/javascript" src="/bootstrap-5.0.2-dist/js/bootstrap.min.js" ></script>
+    <script type="text/javascript" th:src="@{/bootstrap-5.0.2-dist/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script type="text/javascript" th:src="@{https://cdn.jsdelivr.net/npm/sweetalert2@10}"></script>
+    <script type="text/javascript" src="C:\Users\marina la star\Documents\workspace-spring-tool-suite-4-4.15.3.RELEASE\cuisine\src\main\resources\static\sweetalert2\node_modules\sweetalert2\dist"></script>
+    <title>Admin Gestion des Recettes</title>
+</head>
+<body>
+  
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand">AFRICAN'S DELICE</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" th:href="@{/admin/recettes}">recettes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/admin/categories}">categories</a>
+            </li>
+            <li class="nav-item">
+              <form th:action="@{/logout}" method="post">
+                <button type="submit" value="Sign Out" class="btn btn-primary" style="background-color: red; margin-left:50%;">deconnexion</button>
+                </form>               
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="card">
+        <div class="card-body">
+          utilisez cette page pour gerer les recettes 
+        </div>
+        <div class="card-body">
+          <b>TOUTES LES RECETTES        </b><a class="btn btn-primary" th:href="@{/admin/recettes/add}" style="background-color:green;">nouvelle recette</a>
+        </div>
+      </div>
+      <div class="container" style="align-items:center ;">
+        <div class="card-deck" style="display:flex; flex-wrap: wrap;margin-left:5%;">
+          <div class="card" th:each = "recet: ${listRecettes}" style="min-width:200px; max-width:250px; margin-top: 10px; margin-left: 10px;">
+            <img class="card-img-top" th:src="@{${recet.urlImageRecette}}" alt="recette">
+            <div class="card-body">
+              <h5 class="card-title" th:text="${recet.nameRecette}"></h5>
+              <fieldset style="border: solid;"></fieldset><p class="card-text"></p></fieldset>
+            </div>
+              <a class="btn btn-primary" th:href="@{/admin/recette/update/{id}(id=${recet.idRecette})}" style="background-color: green;">Modifier</a><a id="delete" onclick="test();" class="btn btn-primary" th:href="@{/admin/recette/delete/{id}(id=${recet.idRecette})}"  style="background-color: red;">Supprimer</a>
+          </div>
+        </div>
+        </div>
+        <script src="../../static/sweetalert2/node_modules/sweetalert2/dist/sweetalert2.all.min.js" th:src="@{/sweetalert2/node_modules/sweetalert2/dist/sweetalert2.all.min.js}"></script>
+        <script th:inline="javascript">
+          function test(){
+            Swal.fire({
+  position: 'top-end',
+  icon: 'success',
+  title: 'la recette a été supprimée avec succès',
+  showConfirmButton: false,
+  timer: 5000
+})
+          }
+        </script>
+</body>
+</html>

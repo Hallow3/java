@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="/bootstrap-5.0.2-dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" th:href="@{/bootstrap-5.0.2-dist/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="/bootstrap-5.0.2-dist/css/bootstrap-grid.min.css"/>
+    <link rel="stylesheet" th:href="@{/bootstrap-5.0.2-dist/css/bootstrap-grid.min.css}"/>
+    <link rel="stylesheet" href="/bootstrap-5.0.2-dist/css/bootstrap-reboot.min.css"/>
+    <link rel="stylesheet" th:href="@{/bootstrap-5.0.2-dist/css/bootstrap-reboot.min.css}"/>
+    <script type="text/javascript" src="/bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" th:src="@{/bootstrap-5.0.2-dist/js/bootstrap.min.js}"></script>
+    <title>login</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#"></a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/login}">connexion</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/registration}">inscription</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-7 col-md-offset-4">
+      <h2>Connexion</h2>
+      <form th:action="@{/login}" method="post">
+        <!-- message d'erreur -->
+        <div th:if="${param.error}">
+          <div class="alert alert-danger">e-mail ou mot de passe incorrect veillez réessayer !</div>
+        </div>
+        <!-- message de deconnection -->
+        <div th:if="${param.logout}">
+          <div class="alert alert-info">vous avez été déconnecter avec sucess!</div>
+        </div>
+        <div class="form-group">
+          <label for="username">Username </label>:
+          <input type="text" class="form-control" name="username" id="username" placeholder="addresse e-mail" autofocus="autofocus" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password </label>:
+          <input type="password" class="form-control" name="password" id="password" placeholder="password" required>
+        </div>
+        <br>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-7 col-sm-4">
+              <input type="submit" name="login-submit" id="login-submit" class="form-control btn  btn-primary" value="Log In" />
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="form-group">
+        <span>new user? <a th:href="@{/registration}">register here!</a></span>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 
+<div style="background-color:#337ab7 ; height: 50px;"></div>
+<div class="container-fluid" align="center">
+    <div class="row col-lg-4 col-lg-offset-4" style="margin-top: 80px; background-color: #fff;padding: 20px; border: solid 1px; border-radius: 5px; box-shadow: 20px 100px 120px rgba(0, 0, 0, 0.5);">
+    <form th:action="@{/login}" method="POST" class="form-signin">
+        <h3 class="form-signin-heading" th:text="connexion"></h3>
+        <br/><input type="email" name="email" id="email" th:placeholder="email" class="form-control" style="border: solid 0.5px;" required>
+        <br/><input type="password" name="password" id="password" th:placeholder="password" class="form-control" style="border: solid 0.5px;" required>
+        <div align="center" th:if="${param.error}">
+            <p style="font-size: 20; color:#FF1c19;">l'e-mail ou le mot de passe n'est pas correct! veillez ressayer.</p>
+        </div>
+        <br/>
+        <button class="btn btn-lg btn-primary" th:text="Login" type="Submit" name="Submit" value="Sign-in" style="background-color: green;"></button>
+    </form>
+</div>
+</div> -->
+</body>
+</html>

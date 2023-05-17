@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" th:href="@{/bootstrap-5.0.2-dist/css/bootstrap.min.css}">
+    <script type="text/javascript" th:src="@{/jquery/dist/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/lightslider.js}"></script>
+    <script type="text/javascript" th:src="@{/bootstrap-5.0.2-dist/js/bootstrap.min.js}"></script>
+    <script th:src="@{/sweetalert2/node_modules/sweetalert2/dist/sweetalert2.all.min.js}"></script>
+    <title>validation inscription</title>
+</head>
+<body onload="refresh()">
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#"></a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/login}">&nbsp;connexion</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/registration}">&nbsp;inscription</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div th:if="${code}">
+
+    <script th:inline="javascript">
+        function test(){
+          Swal.fire({
+  position: 'top-end',
+  icon: 'error',
+  title:  'le code de vérification est incorrect !',
+  showConfirmButton: false,
+  timer: 5000
+  })
+        }
+        test();
+      </script>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-7 col-md-offset-4" style="margin-top: 50px;">
+      <h2 align = "center">code de validation</h2>
+      <form th:action="@{/formpasswordrecuver(nombre=${nombre})}" method="post" th:object="${User}">
+        <div class="form-group">
+            <label for="mail">votre adresse mail: </label>
+            <input onfocus="refresh()" disabled th:field="*{email}" type="email" class="form-control" name="email" id="email" placeholder="addresse e-mail" autofocus="autofocus" required>
+          </div><br/>
+        <div class="form-group">
+          <label for="username">Entrer le code du mail: </label>
+          <input pattern="^[0-9]{6}$" type="number" class="form-control" name="number" id="username" placeholder="******" autofocus="autofocus" required>
+        </div><br/>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-7 col-sm-4">
+              <input onmouseenter ="todo()" onmouseleave="refresh()" type="submit" id="login-submit" class="form-control btn  btn-primary" value="envoyer" />
+            </div>
+          </div>
+        </div>
+      </form><br/>
+      <div >
+        <span> nous vous avons envoyer un code dans votre boite mail veillez le renseigner &nbsp; <a th:href="@{/registration}"> renvoyez le code</a></span>
+      </div><br/>
+      
+    </div>
+  </div>
+</div>
+<div th:if="${code}">
+
+  <script th:inline="javascript">
+      function test(){
+        Swal.fire({
+position: 'top-end',
+icon: 'error',
+title:  'le code de verification est incorrect ',
+showConfirmButton: false,
+timer: 5000
+})
+      }
+      test();
+    </script>
+</div>
+<script>
+    let todo = () => {
+        document.getElementById('email').disabled = false;
+    }
+    let refresh = () => {
+        document.getElementById('email').disabled = true;
+    }
+</script>
+</body>
+</html>

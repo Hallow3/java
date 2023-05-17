@@ -1,0 +1,4 @@
+INDEX VERSION 1.131+C:\Users\marina la star\Documents\workspace-spring-tool-suite-4-4.15.3.RELEASE\cuisine\.metadata\.plugins\org.eclipse.jdt.core
+3407358916.index
+1790922692.index
+1865797976.index

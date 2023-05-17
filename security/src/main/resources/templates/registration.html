@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap-5.0.2-dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" th:href="@{/bootstrap-5.0.2-dist/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="/bootstrap-5.0.2-dist/css/bootstrap-grid.min.css"/>
+    <link rel="stylesheet" th:href="@{/bootstrap-5.0.2-dist/css/bootstrap-grid.min.css}"/>
+    <link rel="stylesheet" href="/bootstrap-5.0.2-dist/css/bootstrap-reboot.min.css"/>
+    <link rel="stylesheet" th:href="@{/bootstrap-5.0.2-dist/css/bootstrap-reboot.min.css}"/>
+    <script type="text/javascript" src="/bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" th:src="@{/bootstrap-5.0.2-dist/js/bootstrap.min.js}"></script>
+    <title>registration</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <!-- Brand -->
+        <a class="navbar-brand" href="#"></a>
+      
+        <!-- Toggler/collapsibe Button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/login}">connexion</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/registration}">inscription</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- formulaire denregistrement -->
+    
+      <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-4">
+                <!-- sucess message -->
+                <div th:if="${param.sucess}">
+                    <div class="alert alert-info">vous avez bien été enregistrer dans l'application</div>
+                </div>
+                <h2 align="center">inscription</h2>
+                <form th:action="@{/registration}" method="post" th:object="${user}">
+                    <div class="form-group">
+                        <label class="control-label" for="firstName">
+                            Prenom :
+                        </label>
+                        <input  id="firstName" class="form-control" th:field="*{firstName}" required autofocus="autofocus">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="lastName">
+                            Nom :
+                        </label>
+                        <input type="text" name="" id="lastName" class="form-control" th:field="*{lastName}" required autofocus="autofocus">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="email">
+                            Email :
+                        </label>
+                        <input type="email" name="" id="email" class="form-control" th:field="*{email}" required autofocus="autofocus">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="password">
+                            Password :
+                        </label>
+                        <input type="password" name="" id="password" class="form-control" th:field="*{password}" required autofocus="autofocus">
+                    </div>
+                    <br/>
+                    <div class="form-group">
+                        <button class="btn btn-success" type="submit">s'inscrire</button>
+                        <span>
+                              déjà inscrit? <a th:href="@{/login}">se connecter</a>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+      </div>
+
+</body>
+</html>

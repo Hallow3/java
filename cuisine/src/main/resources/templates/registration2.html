@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/bootstrap-5.0.2-dist/css/bootstrap.min.css}">
+    <script type="text/javascript" th:src="@{/jquery/dist/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/lightslider.js}"></script>
+    <script type="text/javascript" th:src="@{/bootstrap-5.0.2-dist/js/bootstrap.min.js}"></script>
+    <script th:src="@{/sweetalert2/node_modules/sweetalert2/dist/sweetalert2.all.min.js}"></script>
+
+    <title>confirm mail</title>
+</head>
+<body onload="refresh()">
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <!-- Brand -->
+        <a class="navbar-brand" href="#"></a>
+      
+        <!-- Toggler/collapsibe Button -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/login}">&nbsp;connexion</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/registration}">&nbsp;inscription</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- formulaire denregistrement -->
+    
+      <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-4">
+                <!-- sucess message -->
+                <div th:if="${param.sucess}">
+                    <div class="alert alert-info">vous avez bien été enregistrer dans l'application</div>
+                </div>
+                <h2 align="center">inscription</h2>
+                <form th:action="@{/registration(nombre=${nombre})}" method="post" th:object="${user}">
+                    <div class="form-group">
+                        <label class="control-label" for="firstName">
+                            Prenom :
+                        </label>
+                        <input onfocus="refresh()" id="prenom" class="form-control" th:field="*{firstName}" required autofocus="autofocus" disabled><br/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="lastName">
+                            Nom :
+                        </label>
+                        <input onfocus="refresh()" type="text" name="" id="nom" class="form-control" th:field="*{lastName}" required autofocus="autofocus" disabled><br/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="lastName">
+                            Age :
+                        </label>
+                      <input onfocus="refresh()" type="number" min="16" placeholder="16" name="" id="age" class="form-control" th:field="*{age}" required autofocus="autofocus" disabled><br/>
+                    </div>  
+                    <div class="form-group">
+                        <label class="control-label" for="lastName">
+                            Numero Téléphone :
+                        </label>
+                    <input onfocus="refresh()" type="text" name="" id="numero" class="form-control" th:field="*{phone}" required autofocus="autofocus" disabled><br/>
+                     </div>
+                    <div class="form-group">
+                        <label class="control-label" for="email">
+                            Email :
+                        </label>
+                        <input onfocus="refresh()" type="email" name="" id="email" class="form-control" th:field="*{email}" required autofocus="autofocus" disabled><br/>
+                        <div th:if="${activation}">
+
+                            <script th:inline="javascript">
+                                function test(){
+                                  Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title:  'cette addresse mail possède deja un compte!',
+                        showConfirmButton: false,
+                        timer: 5000
+                      })
+                                }
+                                test();
+                              </script>
+                    
+                        </div>
+                    </div><br/>
+                    <span style="color: green;">2) definissez le mot de passe et validez le mail</span>
+                    <div class="form-group"><br/>
+                        <label class="control-label" for="password">
+                            Mot de passe :
+                        </label>
+                        <input type="password" name="" id="password" class="form-control" th:field="*{password}" required autofocus="autofocus"><br/>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label" for="password">
+                          Confirmer Mot de passe :
+                      </label>
+                      <input type="password" name="" id="password" class="form-control" th:field="*{confirmPassword}" required autofocus="autofocus"><br/>
+                      <div th:if="${confirm}">
+
+                        <script th:inline="javascript">
+                            function test(){
+                              Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title:  'le mot de passe et la confirmation sont différents!',
+                    showConfirmButton: false,
+                    timer: 5000
+                  })
+                            }
+                            test();
+                          </script>
+                
+                    </div>
+                    <div th:if="${erreur}">
+
+                        <script th:inline="javascript">
+                            function test(){
+                              Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title:  'le code de verification du mail est incorrect!',
+                    showConfirmButton: false,
+                    timer: 5000
+                  })
+                            }
+                            test();
+                          </script>
+                
+                    </div>
+                    </div>
+                    <div th:if="${nombre}">
+                        <div class="form-group">
+                            <label for="username">Entrer le code du mail: </label>
+                            <input pattern="[0-9]{6}" type="number" class="form-control" name="number" id="username" placeholder="******" autofocus="autofocus" required>
+                            <span>exemple: 123456 &nbsp;</span>
+
+                            <div>
+                                <span> nous vous avons envoyer un code dans votre boite mail veillez le renseigner &nbsp; <a th:href="@{/registration}"> renvoyez le code</a></span>
+                              </div>
+                          </div><br/>
+                    </div><br/>
+                    <div class="form-group">
+                    <button class="btn btn-success" onmouseenter ="todo()" onmouseout="refresh()" type="submit">s'inscrire</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+      </div><br/>
+      <script>
+          let todo = () => {
+              document.getElementById('email').disabled = false;
+              document.getElementById('prenom').disabled = false;
+              document.getElementById('nom').disabled = false;
+              document.getElementById('numero').disabled = false;
+              document.getElementById('age').disabled = false;
+          }
+          let refresh = () => {
+              document.getElementById('email').disabled = true;
+              document.getElementById('prenom').disabled = true;
+              document.getElementById('nom').disabled = true;
+              document.getElementById('numero').disabled = true;
+              document.getElementById('age').disabled = true;
+          }
+      </script>
+</body>
+</html>
