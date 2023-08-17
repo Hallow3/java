@@ -12,4 +12,7 @@ quelques captures de toolbox:
 ![toolbox4](https://github.com/Hallow3/java/assets/122538001/aeb795d3-8ba7-43fc-9ac6-22509da02d7a)
 
 cuisine est une application java web qui permet de manipuler des recette de cuisine( toutes les actions crud et de permettre des les consulter sur un portail):
+![recette](https://github.com/Hallow3/java/assets/122538001/3164f3a2-d9d3-428f-95ac-856f6787f519)
+![recette2](https://github.com/Hallow3/java/assets/122538001/9d3c858c-7880-4ea7-b1d0-59186aa9004d)
+![recette3](https://github.com/Hallow3/java/assets/122538001/7acca57f-5157-4015-b378-63538ea39137)
 
